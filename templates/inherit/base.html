@@ -45,7 +45,8 @@
   <header id="header" class="fixed-top header-inner-pages">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index.html">Arsha</a></h1>
+      {% comment %} <h1 class="logo me-auto"><a href="index.html">Arsha</a></h1> {% endcomment %}
+      <a href="{% url 'home:home' %}"><img class="logo me-auto" src={% static 'img/logo4.png' %} alt=""></a>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="{% static 'img/logo.png' %}" alt="" class="img-fluid"></a>-->
 
@@ -54,27 +55,27 @@
           <li><a class="nav-link scrollto " href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link   scrollto" href="#portfolio">Portfolio</a></li>
+          <li><a class="nav-link   scrollto" href="{% url 'home:home' %}#portfolio">Portfolio</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+          {% if request.user.is_authenticated %}
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li class="dropdown"><a href="#"><span>Account</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
+              <li><a >Logged as {{request.user.username}}</a></li>
+              <li><a href="{% url 'password_change' %}">Change Password</a></li>
+              <li><a href="{% url 'accounts:change' %}">Change Profile Picture</a></li>
+              {% comment %} <li><a href="{% url 'accounts:change' userid=request.user.id %}">Change Profile Photo</a></li> {% endcomment %}
+              <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+              <li><a href="{% url 'accounts:delete' userid=request.user.id %}">Delete Account</a></li>
             </ul>
           </li>
+          
+          {% comment %} <li><a class="getstarted scrollto" href="#about">Get Started</a></li> {% endcomment %}
+          <li><img class="gerd" src={{ user.image.url }} alt="User Image" width=54px ></li>
+          {% else %}
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
+          <li><a class="getstarted scrollto" href="{% url 'accounts:login' %}">Sign in / Sign up</a></li>
+          {% endif %}
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -116,7 +117,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-6">
-            <h4>Join Our Newsletter</h4>
+            <h4>Join To Our New Product News</h4>
             <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
             <form action="" method="post">
               <input type="email" name="email"><input type="submit" value="Subscribe">

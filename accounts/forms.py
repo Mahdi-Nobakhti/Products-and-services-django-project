@@ -1,23 +1,28 @@
-from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm,UserCreationForm,UserChangeForm
 from django import forms
-# from accounts.models import CostumUser
-from django.contrib.auth.models import User
+from accounts.models import CustomUser
 
 
 class LoginForm(AuthenticationForm):
     
 
     class Meta:
-        model = CostumUser
+        model = CustomUser
         fields = {'username','password'}
-
-
 
 
 class SignupForm(UserCreationForm):
     email = forms.EmailField()
     image = forms.ImageField(required=False)
-    id_code = forms.CharField(max_length=10)
     class Meta:
-        model = CostumUser
+        model = CustomUser
         fields = {'username','password1','password2','email'}
+
+
+class ChangePhoto(forms.ModelForm):
+    # image = forms.ImageField(required=False)
+    class Meta:
+        model = CustomUser
+        fields = ['image']
+
+

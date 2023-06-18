@@ -1,0 +1,16 @@
+{% load static %}
+<title>Logout</title>
+<link rel="stylesheet" href="{% static 'css/style2.css'%}">
+<div class="login-box">
+    {% comment %} <h2>Logout</h2> {% endcomment %}
+    <form method="post" style=margin-left:95px>
+        {% csrf_token %}
+        <button>   
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+           Logout
+        </button>
+    </form>
+</div>

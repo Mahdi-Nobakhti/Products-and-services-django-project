@@ -1,0 +1,32 @@
+{% load static %}
+<title>Change Picture</title>
+<link rel="stylesheet" href="{% static 'css/style2.css'%}">
+<div class="login-box">
+    <h2>Change Profile Picture</h2>
+    <form method="post"enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="user-box">
+            <label>Upload New Profile Picture</label>
+            <br><br><br>
+            <input type="file" name="image"accept="image/*">
+            {% comment %} {{form.image}} {% endcomment %}
+        </div> 
+        <button type="submit">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+           Change
+        </button>
+        <a href="{% url 'accounts:default' %}">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span><p style="font-size:14px;width:230px">Don't want profile picture<br>(change by default)</p></a>
+    </form>
+    {% if messages %}
+    {% for message  in messages %}
+        <p style="color:#f70c0c">{{message}}</p>
+    {% endfor %}
+    {% endif %}
+</div>

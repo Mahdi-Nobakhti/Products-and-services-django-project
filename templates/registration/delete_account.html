@@ -1,0 +1,16 @@
+{% load static %}
+<title>Delete Account</title>
+<link rel="stylesheet" href="{% static 'css/style2.css'%}">
+<div class="login-box">
+    <h2>Delete Account</h2>
+    <form method="post" style=margin-left:95px>
+        {% csrf_token %}
+        <button>   
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+           Delete
+        </button>
+    </form>
+</div>

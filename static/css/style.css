@@ -110,7 +110,7 @@ h6 {
 #header {
   transition: all 0.5s;
   z-index: 997;
-  padding: 15px 0;
+  padding: 1px 0;
 }
 
 #header.header-scrolled,
@@ -1821,4 +1821,9 @@ section {
   #footer .credits {
     padding-top: 4px;
   }
+}
+
+.gerd{
+  border-radius: 50%;
+  height: 54px;
 }
