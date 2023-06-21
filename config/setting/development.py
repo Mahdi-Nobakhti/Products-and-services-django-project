@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
 ]
   
-SITE_ID = 2
+SITE_ID = 4
 
 STATIC_ROOT=BASE_DIR/'/static'
 MEDIA_ROOT=BASE_DIR/'media'

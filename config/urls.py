@@ -26,7 +26,7 @@ sitemaps = {
     "static": StaticSiteMaps,
     "dynamic": DynamicSiteMaps
 }
-
+app_name="Hame"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('home.urls')),
@@ -37,7 +37,8 @@ urlpatterns = [
         sitemap,
         {"sitemaps":sitemaps},
         name = "django.contrib.sitemaps.views.sitemap"
-    )
+    ),
+    
 ]
 
 urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

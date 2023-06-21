@@ -112,5 +112,4 @@ def create_product(req):
             #     messages.add_message(req,messages.ERROR,'The input data is not valid !')
             #     return redirect('home:create_product')    
 
-          
-       
+      
