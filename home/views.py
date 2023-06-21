@@ -40,7 +40,12 @@ def products(req,category=None):
     if req.method == 'GET':
         products = Product.objects.filter(status=True)
         if category:
-            products = Product.objects.filter(category__name=category)
+            products = Product.objects.filter(status=True,category__name=category)
+        # if req.GET.get('search'):
+        #     products = Product.objects.filter(status=True,title__name=req.GET.get('search'))
+        if req.GET.get('search'):
+            search_query = req.GET.get('search')
+            products = products.filter(title__icontains=search_query)
         newsform = NewsForm()
         category = Category.objects.all()[::-1]
         products = Paginator(products, 3)
