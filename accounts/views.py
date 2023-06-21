@@ -12,33 +12,38 @@ def Login(req):
     if req.user.is_authenticated:
         return redirect('/')
     elif req.method == 'GET':
-        return render(req, 'registration/login.html')
+        captcha = CaptchaForm()
+        return render(req, 'registration/login.html',{'captcha':captcha})
     elif req.method == 'POST':
-            password = req.POST.get('password')
-            username = req.POST.get('username')
-            
-            if '@'in username :
-                user = CustomUser.objects.get(email=username )
-                name = user.username  
-                user_email=authenticate(username=name,password=password)
-                if user_email is not None:  
-                    login(req,user_email)
-                    return redirect('/')
+            captcha = CaptchaForm(req.POST)
+            if captcha.is_valid():
+                password = req.POST.get('password')
+                username = req.POST.get('username')
+                
+                if '@'in username :
+                    user = CustomUser.objects.get(email=username )
+                    name = user.username  
+                    user_email=authenticate(username=name,password=password)
+                    if user_email is not None:  
+                        login(req,user_email)
+                        return redirect('/')
+                    else:
+                        messages.add_message(req,messages.ERROR,'The input data is not valid !')
+                        return redirect('accounts:login')
+                elif '@' not in username:
+                    user_name=authenticate(username=username,password=password)
+                    if user_name is not None:  
+                        login(req,user_name)
+                        return redirect('/')
+                    else:
+                        messages.add_message(req,messages.ERROR,'The input data is not valid !')
+                        return redirect('accounts:login')
                 else:
                     messages.add_message(req,messages.ERROR,'The input data is not valid !')
                     return redirect('accounts:login')
-            elif '@' not in username:
-                user_name=authenticate(username=username,password=password)
-                if user_name is not None:  
-                    login(req,user_name)
-                    return redirect('/')
-                else:
-                    messages.add_message(req,messages.ERROR,'The input data is not valid !')
-                    return redirect('accounts:login')
-            else:
-                messages.add_message(req,messages.ERROR,'The input data is not valid !')
+            else: 
+                messages.add_message(req,messages.ERROR,'The captcha is not valid !')
                 return redirect('accounts:login')
-  
 
 @login_required
 def Logout(req):
@@ -52,24 +57,31 @@ def Logout(req):
 def Signup(req):
     if req.method == 'GET':
         form = SignupForm()
-        return render(req, 'registration/signup.html' , {'form':form})
+        captcha = CaptchaForm()
+
+        return render(req, 'registration/signup.html' , {'form':form,'captcha':captcha})
     elif req.method == 'POST':  
-        form = SignupForm(req.POST,req.FILES)
-        print(form)
-        if form.is_valid():
-            form.save()
-            username = req.POST.get('username')
-            password = req.POST.get('password1')
-            email = req.POST.get('email')
-            image = req.POST.get('image')
-            # print(image)
-            user=authenticate(username=username,password=password,email=email)
-            if user is not None:  
-                login(req,user)
-                return redirect('/')
-        
+        captcha = CaptchaForm(req.POST)
+        if captcha.is_valid():
+            form = SignupForm(req.POST,req.FILES)
+            print(form)
+            if form.is_valid():
+                form.save()
+                username = req.POST.get('username')
+                password = req.POST.get('password1')
+                email = req.POST.get('email')
+                image = req.POST.get('image')
+                # print(image)
+                user=authenticate(username=username,password=password,email=email)
+                if user is not None:  
+                    login(req,user)
+                    return redirect('/')
+            
+            else:
+                messages.add_message(req,messages.ERROR,'The input data is not valid !')
+                return redirect('accounts:signup')
         else:
-            messages.add_message(req,messages.ERROR,'The input data is not valid !')
+            messages.add_message(req,messages.ERROR,'The captcha is not valid !')
             return redirect('accounts:signup')
         
 @login_required

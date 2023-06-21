@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import AuthenticationForm,UserCreationForm,UserChangeForm
 from django import forms
 from accounts.models import CustomUser
+from captcha.fields import CaptchaField
 
 
 class LoginForm(AuthenticationForm):
@@ -26,3 +27,5 @@ class ChangePhoto(forms.ModelForm):
         fields = ['image']
 
 
+class CaptchaForm(forms.Form):
+    captcha= CaptchaField()
