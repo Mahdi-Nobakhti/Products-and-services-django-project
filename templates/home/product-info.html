@@ -1,0 +1,61 @@
+{% extends 'inherit/base.html' %}
+{% load static %}
+{% block 'title' %}Product information{% endblock 'title' %}
+{% block 'content' %}
+
+  <main id="main">
+
+<br><br><br><br><br>
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper">
+              <div class="swiper-wrapper align-items-center">
+
+                <div class="swiper-slide">
+                  <img src="{{product.image1.url}}" alt="">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="{{product.image2.url}}" alt="">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="{{product.image3.url}}" alt="">
+                </div>
+
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>Product information</h3>
+              <ul>
+                <li><strong>Category</strong>:<a href="{% url 'home:products_with_category' category=product.category %}">{{product.category}}</a></li>
+                {% comment %} <li><strong>Category</strong>:<a href="{% url 'home:products_with_category' category={{product.category}} %}">{{product.category}}</a></li> {% endcomment %}
+                <li><strong>Company</strong>:{{product.company}}</li>
+                <li><strong>Date</strong>: {{product.created_date|date:"d M Y"}}</li>
+                <li><strong>Purchase Link</strong>: <a href="{{product.buylink}}">{{product.buylink}}</a></li>
+              </ul>
+            </div>
+            <div class="portfolio-description">
+              <h2>{{product.title}}</h2>
+              <p>
+                {{product.content}}
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Details Section -->
+
+  </main><!-- End #main -->
+{% endblock 'content' %}

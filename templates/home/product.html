@@ -1,0 +1,148 @@
+{% extends 'inherit/base.html' %}
+{% load static %}
+{% block 'title' %}Ni Product Introduction{% endblock 'title' %}
+{% block 'content' %}
+
+<br><br><br><br>
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="section-title">
+            <h2>Products</h2>
+            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            <br>
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'home:create_product' %}" class="btn-get-started scrollto">| Contribute to creating product introduction |</a>
+            {% else %}
+            <a href="{% url 'accounts:login' %}" class="btn-get-started scrollto">| Contribute to creating product introduction |</a>
+            {% endif %}
+          </div>
+  
+          <ul id="portfolio-flters" class="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <a href="{% url 'home:products' %}"><p data-filter="*" class="filter-active">|  All  |</p></a>
+            {% for cate in category %}
+            <a href="{% url 'home:products_with_category' category=cate.name %}"><p data-filter=".filter-app">|  {{cate.name}}  |</p></a>
+            {% endfor %}
+            {% comment %} <li data-filter=".filter-app"><a href="{% url 'home:products_with_category' category='Loptop' %}">Loptop</a></li>
+            <li data-filter=".filter-card"><a href="{% url 'home:products_with_category' category='Computer Pieces' %}">Computer Pieces</a></li>
+            <li data-filter=".filter-web"><a href="{% url 'home:products_with_category' category='Accessories' %}">Accessories</a></li> {% endcomment %}
+          </ul>
+  
+          <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+            
+          {% for product in products %}
+          
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app"><a href="{% url 'home:product_info' pid=product.id %}">
+            <div class="portfolio-img"><img src="{{product.image1.url}}" class="img-fluid" alt=""></div>
+            <div class="portfolio-info">
+              <h4>{{product.title}}</h4>
+              {% comment %} <a href="{{product.image1.url}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a> {% endcomment %}
+              <a href="{% url 'home:product_info' pid=product.id %}" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div></a>
+          {% endfor %}
+
+            {% comment %} <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+              <div class="portfolio-img"><img src="{% static 'img/portfolio/portfolio-2.jpg' %}" class="img-fluid" alt=""></div>
+              <div class="portfolio-info">
+                <h4>Web 3</h4>
+                <p>Web</p>
+                <a href="{% static 'img/portfolio/portfolio-2.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+                <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+              <div class="portfolio-img"><img src="{% static 'img/portfolio/portfolio-3.jpg' %}" class="img-fluid" alt=""></div>
+              <div class="portfolio-info">
+                <h4>App 2</h4>
+                <p>App</p>
+                <a href="{% static 'img/portfolio/portfolio-3.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
+                <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+              <div class="portfolio-img"><img src="{% static 'img/portfolio/portfolio-4.jpg' %}" class="img-fluid" alt=""></div>
+              <div class="portfolio-info">
+                <h4>Card 2</h4>
+                <p>Card</p>
+                <a href="{% static 'img/portfolio/portfolio-4.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
+                <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+              <div class="portfolio-img"><img src="{% static 'img/portfolio/portfolio-5.jpg' %}" class="img-fluid" alt=""></div>
+              <div class="portfolio-info">
+                <h4>Web 2</h4>
+                <p>Web</p>
+                <a href="{% static 'img/portfolio/portfolio-5.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
+                <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+              <div class="portfolio-img"><img src="{% static 'img/portfolio/portfolio-6.jpg' %}" class="img-fluid" alt=""></div>
+              <div class="portfolio-info">
+                <h4>App 3</h4>
+                <p>App</p>
+                <a href="{% static 'img/portfolio/portfolio-6.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
+                <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+              <div class="portfolio-img"><img src="{% static 'img/portfolio/portfolio-7.jpg' %}" class="img-fluid" alt=""></div>
+              <div class="portfolio-info">
+                <h4>Card 1</h4>
+                <p>Card</p>
+                <a href="{% static 'img/portfolio/portfolio-7.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
+                <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+              <div class="portfolio-img"><img src="{% static 'img/portfolio/portfolio-8.jpg' %}" class="img-fluid" alt=""></div>
+              <div class="portfolio-info">
+                <h4>Card 3</h4>
+                <p>Card</p>
+                <a href="{% static 'img/portfolio/portfolio-8.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
+                <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+              <div class="portfolio-img"><img src="{% static 'img/portfolio/portfolio-9.jpg' %}" class="img-fluid" alt=""></div>
+              <div class="portfolio-info">
+                <h4>Web 3</h4>
+                <p>Web</p>
+                <a href="{% static 'img/portfolio/portfolio-9.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+                <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div> {% endcomment %}
+  
+          </div>
+          
+        </div>
+      </section><!-- End Portfolio Section -->
+      <div class="prev" style= margin-left:40px>
+      {% if products.has_previous %} 
+            <a href="?page={{products.previous_page_number}}" class="cta-btn align-middle2" aria-label="Previous">
+              <h3 style=width:239px> Previous Page </h3>
+            </a>
+      {% endif %}
+      </div>
+      <br>
+      <div class="next" style= margin-left:85px>
+      {% if products.has_next %}
+            <a href="?page={{products.next_page_number}}" class="cta-btn align-middle2" aria-label="Next">
+              <h3 style=width:239px> Next Page </h3>
+                
+              
+            </a>
+      {% endif %}
+      </div>
+
+{% endblock 'content' %}		  

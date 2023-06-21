@@ -19,10 +19,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'robots',
     'home.apps.HomeConfig',
     'accounts.apps.AccountsConfig',
 ]
   
+SITE_ID = 2
+
 STATIC_ROOT=BASE_DIR/'/static'
 MEDIA_ROOT=BASE_DIR/'media'
 

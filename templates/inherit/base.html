@@ -52,11 +52,11 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto " href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link   scrollto" href="{% url 'home:home' %}#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
+          <li><a class="nav-link scrollto " href="{% url 'home:home' %}#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'home:home' %}#about">About</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'home:home' %}#services">Services</a></li>
+          <li><a class="nav-link   scrollto" href="{% url 'home:products' %}">Products</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'home:home' %}#team">Team</a></li>
           {% if request.user.is_authenticated %}
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           <li class="dropdown"><a href="#"><span>Account</span> <i class="bi bi-chevron-down"></i></a>
@@ -120,8 +120,14 @@
             <h4>Join To Our New Product News</h4>
             <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
             <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
+              {% csrf_token %}
+              {{newsform}}<input type="submit" value="Subscribe">
             </form>
+            {% if messages %}
+            {% for message  in messages %}
+                <p style="color:#128bc6">{{message}}</p>
+            {% endfor %}
+            {% endif %}
           </div>
         </div>
       </div>
@@ -204,7 +210,7 @@
   <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
   <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
   <script src="{% static 'vendor/waypoints/noframework.waypoints.js' %}"></script>
-  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+  {% comment %} <script src="{% static 'vendor/php-email-form/validate.js' %}"></script> {% endcomment %}
 
   <!-- Template Main JS File -->
   <script src="{% static 'js/main.js' %}"></script>

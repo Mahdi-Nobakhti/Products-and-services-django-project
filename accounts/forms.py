@@ -16,7 +16,7 @@ class SignupForm(UserCreationForm):
     image = forms.ImageField(required=False)
     class Meta:
         model = CustomUser
-        fields = {'username','password1','password2','email'}
+        fields = {'username','password1','password2','email','image'}
 
 
 class ChangePhoto(forms.ModelForm):

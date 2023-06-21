@@ -1,6 +1,6 @@
 {% extends 'inherit/base.html' %}
 {% load static %}
-{% block 'title' %}Ni Shop{% endblock 'title' %}
+{% block 'title' %}Ni Product Introduction{% endblock 'title' %}
 {% block 'content' %}
 
   <!-- ======= Hero Section ======= -->
@@ -267,9 +267,9 @@
     </section><!-- End Cta Section -->
 
     <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
+    {% comment %} <section id="portfolio" class="portfolio">
       <div class="container" data-aos="fade-up">
-
+        
         <div class="section-title">
           <h2>Portfolio</h2>
           <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
@@ -373,12 +373,39 @@
               <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
+        </div>
+        
+        <a class="cta-btn align-middle" href="{% url 'home:products' %}"><h1>See All Products</h1></a>
+      </div>
+    </section><!-- End Portfolio Section --> {% endcomment %}
 
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+      <div class="container" data-aos="fade-up">
+        
+        <div class="section-title">
+          <h2>Portfolio</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+        {% for product in last4product %}
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <a href="{% url 'home:product_info' pid=product.id %}">
+            <div class="portfolio-img"><img src="{{product.image1.url}}" class="img-fluid" alt=""></div>
+            <div class="portfolio-info">
+              <h4>{{product.title}}</h4>
+              {% comment %} <a href="{{product.image1.url}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a> {% endcomment %}
+              <a href="{% url 'home:product_info' pid=product.id %}" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div></a>
+        {% endfor %}
+          
+        
+        
       </div>
+      <div class="login-box"style=margin-left:455px;with:10px;><a class="cta-btn align-middle" href="{% url 'home:products' %}" style=with:10px><h1 >||| See All Products |||</h1></a>
     </section><!-- End Portfolio Section -->
-
     <!-- ======= Team Section ======= -->
     <section id="team" class="team section-bg">
       <div class="container" data-aos="fade-up">
@@ -464,7 +491,7 @@
     </section><!-- End Team Section -->
 
     <!-- ======= Pricing Section ======= -->
-    <section id="pricing" class="pricing">
+    {% comment %} <section id="pricing" class="pricing">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -522,7 +549,7 @@
         </div>
 
       </div>
-    </section><!-- End Pricing Section -->
+    </section><!-- End Pricing Section --> {% endcomment %}
 
     <!-- ======= Frequently Asked Questions Section ======= -->
     <section id="faq" class="faq section-bg">
@@ -623,23 +650,28 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+           
+            <form action="{% url 'home:home' %}" method="post" role="form" class="php-email-form">
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="name">Your Name</label>
+                  {% csrf_token %}
                   <input type="text" name="name" class="form-control" id="name" required>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="name">Your Email</label>
+                  {% csrf_token %}
                   <input type="email" class="form-control" name="email" id="email" required>
                 </div>
               </div>
               <div class="form-group">
                 <label for="name">Subject</label>
+                {% csrf_token %}
                 <input type="text" class="form-control" name="subject" id="subject" required>
               </div>
               <div class="form-group">
                 <label for="name">Message</label>
+                {% csrf_token %}
                 <textarea class="form-control" name="message" rows="10" required></textarea>
               </div>
               <div class="my-3">

@@ -8,8 +8,6 @@ from .models import CustomUser
 
 
 
-
-
 def Login(req):
     if req.user.is_authenticated:
         return redirect('/')
@@ -56,7 +54,7 @@ def Signup(req):
         form = SignupForm()
         return render(req, 'registration/signup.html' , {'form':form})
     elif req.method == 'POST':  
-        form = SignupForm(req.POST)
+        form = SignupForm(req.POST,req.FILES)
         print(form)
         if form.is_valid():
             form.save()
@@ -64,8 +62,8 @@ def Signup(req):
             password = req.POST.get('password1')
             email = req.POST.get('email')
             image = req.POST.get('image')
-            print(image)
-            user=authenticate(username=username,password=password,email=email,image=image)
+            # print(image)
+            user=authenticate(username=username,password=password,email=email)
             if user is not None:  
                 login(req,user)
                 return redirect('/')

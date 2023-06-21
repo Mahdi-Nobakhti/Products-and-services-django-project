@@ -1,0 +1,73 @@
+{% load static %}
+<title>Create Product</title>
+<link rel="stylesheet" href="{% static 'css/style2.css'%}">
+<div class="login-box">
+    <br><br><br><br><br><br><br><br>
+    <h2>Create Product</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="user-box">
+            {% comment %} <input type="text" name="username" required=""> {% endcomment %}
+            {{form.title}}
+            <label>Title</label>
+        </div>
+        <div class="user-box">
+            {% comment %} <input type="email" name="email" required=""> {% endcomment %}
+            <label>Category</label>
+            <br><br>
+            {{form.category}}
+        </div> 
+        <div class="user-box">
+            {% comment %} <input type="password" name="password1" required=""> {% endcomment %}
+            <label>Content</label><br><br>
+            {{form.content}}
+        </div><br> 
+        <div class="user-box">
+            
+            {% comment %} <input type="password" name="password2" required=""> {% endcomment %}
+            {{form.company}}
+            <label>Company</label>
+        </div> 
+        <div class="user-box">
+            {% comment %} <input type="password" name="password2" required=""> {% endcomment %}
+            {{form.buylink}}
+            <label>Purchase Link<span style=font-size:9px;color:#03e9f4><b>(Try enter the purchase link from Amazon.com)</span</label>
+        </div> 
+        <div class="user-box">
+            {% comment %} <input type="password" name="password2" required=""> {% endcomment %}
+            <label>Image 1</label>
+            <br>
+            {% comment %} {{form.image1}} {% endcomment %}
+            <input type="file" name="image1"accept="image/*">
+        </div> 
+        <div class="user-box">
+            {% comment %} <input type="password" name="password2" required=""> {% endcomment %}
+            <label>Image 2</label>
+            <br>
+            {% comment %} {{form.image2}} {% endcomment %}
+            <input type="file" name="image2"accept="image/*">
+        </div> 
+        <div class="user-box">
+            {% comment %} <input type="password" name="password2" required=""> {% endcomment %}
+            <label>Image 3</label>
+            <br>
+            {% comment %} {{form.image3}} {% endcomment %}
+            <input type="file" name="image3"accept="image/*">
+        
+        </div> 
+        <div class="user-box"><h4 style=color:#03e9f4;>Your product will be registered after admin approval.</h4></div>
+        <button type="submit">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+           Submit
+        </button>
+        
+    </form>
+    {% if messages %}
+    {% for message  in messages %}
+        <p style="color:#f70c0c">{{message}}</p>
+    {% endfor %}
+    {% endif %}
+</div>
