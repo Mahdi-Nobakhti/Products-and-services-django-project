@@ -71,7 +71,6 @@ def Signup(req):
                 password = req.POST.get('password1')
                 email = req.POST.get('email')
                 image = req.POST.get('image')
-                # print(image)
                 user=authenticate(username=username,password=password,email=email)
                 if user is not None:  
                     login(req,user)

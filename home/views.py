@@ -41,11 +41,9 @@ def products(req,category=None):
         products = Product.objects.filter(status=True)
         if category:
             products = Product.objects.filter(status=True,category__name=category)
-        # if req.GET.get('search'):
-        #     products = Product.objects.filter(status=True,title__name=req.GET.get('search'))
         if req.GET.get('search'):
             search_query = req.GET.get('search')
-            products = products.filter(title__icontains=search_query)
+            products = products.filter(status=True,title__icontains=search_query)
         newsform = NewsForm()
         category = Category.objects.all()[::-1]
         products = Paginator(products, 3)
@@ -113,9 +111,9 @@ def create_product(req):
             print(req.POST)
             if form.is_valid():
                 form.save()
+            else:
+                messages.add_message(req,messages.ERROR,'The input data is not valid !')
+                return redirect('home:create_product')    
             return redirect('home:products')
-            # else :
-            #     messages.add_message(req,messages.ERROR,'The input data is not valid !')
-            #     return redirect('home:create_product')    
 
       

@@ -24,8 +24,7 @@
     background-color: #2751da;
   }
 </style>
-{% comment %} <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> {% endcomment %}
+
 <br><br><br><br>
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
@@ -38,7 +37,7 @@
             {% if request.user.is_authenticated %}
             <a href="{% url 'home:create_product' %}" class="btn-get-started scrollto">| Contribute to creating product introduction |</a>
             {% else %}
-            <a href="{% url 'accounts:login' %}" class="btn-get-started scrollto">| Contribute to creating product introduction |</a>
+            <a href="{% url 'accounts:login' %}" class="btn-get-started scrollto">| You must register to participate in creating product introduction |</a>
             {% endif %}
           </div>
   

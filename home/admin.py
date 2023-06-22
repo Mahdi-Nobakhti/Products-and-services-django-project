@@ -10,7 +10,7 @@ admin.site.register(Category)
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title','status']
+    list_display = ['title','status','created_date']
     list_filter = ['status']
     search_fields = ['title']
 
