@@ -60,7 +60,7 @@
           <li><a class="nav-link   scrollto" href="{% url 'home:products' %}">Products</a></li>
           {% comment %} <li><a class="nav-link scrollto" href="{% url 'home:home' %}#team">Team</a></li> {% endcomment %}
           {% if request.user.is_authenticated %}
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'home:home' %}#contact">Contact</a></li>
           <li class="dropdown"><a href="#"><span>Account</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a >Logged as {{request.user.username}}</a></li>
@@ -75,7 +75,7 @@
           {% comment %} <li><a class="getstarted scrollto" href="#about">Get Started</a></li> {% endcomment %}
           <li><img class="gerd" src={{ user.image.url }} alt="User Image" width=54px ></li>
           {% else %}
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'home:home' %}#contact">Contact</a></li>
           <li><a class="getstarted scrollto" href="{% url 'accounts:login' %}">Sign in / Sign up</a></li>
           {% endif %}
         </ul>
@@ -167,6 +167,7 @@
 
 
           <div class="col-lg-3 col-md-6 footer-links">
+            <br><br>
             <h4>Social Networks</h4>
             <div class="social-links mt-3">
               <a href="https://twitter.com/MahdiNobak37630" class="twitter"><i class="bx bxl-twitter"></i></a>

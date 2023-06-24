@@ -30,13 +30,7 @@ INSTALLED_APPS = [
   
 SITE_ID = 4
 
-COMPESS_ENABLED = True
 
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
-)
 
 
 STATIC_ROOT=BASE_DIR/'/static'
