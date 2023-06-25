@@ -1,7 +1,7 @@
 from config.settings import *
 import os 
 import dotenv
-dotenv.load_dotenv("/home/niproductintroduction/project/env/env.env")
+dotenv.load_dotenv("/home/niproduc/project/env/env.env")
 
 
 
@@ -29,8 +29,8 @@ DEBUG = False
 ALLOWED_HOSTS = ['niproductintroduction.ir','www.niproductintroduction.ir ']
 SITE_ID = 1
  
-STATIC_ROOT='/home/niproductintroduction/public_html/static'
-MEDIA_ROOT='/home/niproductintroduction/public_html/media'
+STATIC_ROOT='/home/niproduc/public_html/static'
+MEDIA_ROOT='/home/niproduc/public_html/media'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
 
