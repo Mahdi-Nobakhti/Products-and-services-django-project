@@ -21,4 +21,4 @@ class DynamicSiteMaps(sitemaps.Sitemap):
 
 
     def location(self, obj):
-        return 'product-informations/%s'%obj.id
+        return '/product-informations/%s'%obj.id

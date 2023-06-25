@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
 ]
 
-COMPESS_ENABLED = True
+COMPERSS_ENABLED = True
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
