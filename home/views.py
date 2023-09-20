@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.shortcuts import HttpResponse
 from django.contrib import  messages
 from .forms import *
 from .models import *
@@ -20,17 +21,20 @@ def home(req):
         if req.POST.get('subject'):
             contactform = ContactUsForm(req.POST)
             contactform.save()
-            return redirect('/')
+            # return redirect('/')
+            return HttpResponse("<script>alert('Your message has been sent.');window.location.href = window.location.href;</script>")
         else:
             newsform = NewsForm(req.POST)
         
             if newsform.is_valid():
                 newsform.save()
                 messages.add_message(req,messages.ERROR,'Your email has been sent.')
-                return redirect('/')
+                # return redirect('/')
+                return HttpResponse("<script>alert('Your email has been sent.');window.location.href = window.location.href;</script>")
             else:
                 messages.add_message(req,messages.ERROR,'The Email is not valid !')
-                return redirect('/')
+                # return redirect('/')
+                return HttpResponse("<script>alert('The Email is  ot valid !');window.location.href = window.location.href;</script>")
 
 
 
@@ -70,10 +74,12 @@ def products(req,category=None):
         if newsform.is_valid():
             newsform.save()
             messages.add_message(req,messages.ERROR,'Your email has been sent.')
-            return redirect('home:products')
+            # return redirect('home:products')
+            return HttpResponse("<script>alert('Your email has been sent.');window.location.href = window.location.href;</script>")
         else:
             messages.add_message(req,messages.ERROR,'The Email is not valid !')
-            return redirect('home:products')
+            # return redirect('home:products')
+            return HttpResponse("<script>alert('The Email is not valid !');window.location.href = window.location.href;</script>")
 
 def product(req,pid):
     if req.method == 'GET':
@@ -92,10 +98,12 @@ def product(req,pid):
         if newsform.is_valid():
             newsform.save()
             messages.add_message(req,messages.ERROR,'Your email has been sent.')
-            return redirect(req.META.get('HTTP_REFERER'))
+            # return redirect(req.META.get('HTTP_REFERER'))
+            return HttpResponse("<script>alert('Your email has been sent.');window.location.href = window.location.href;</script>")
         else:
             messages.add_message(req,messages.ERROR,'The Email is not valid !')
-            return redirect(req.META.get('HTTP_REFERER'))    
+            # return redirect(req.META.get('HTTP_REFERER'))    
+            return HttpResponse("<script>alert('The Email is not valid !');window.location.href = window.location.href;</script>")
 
 
 @login_required
