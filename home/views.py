@@ -34,7 +34,7 @@ def home(req):
             else:
                 messages.add_message(req,messages.ERROR,'The Email is not valid !')
                 # return redirect('/')
-                return HttpResponse("<script>alert('The Email is  ot valid !');window.location.href = window.location.href;</script>")
+                return HttpResponse("<script>alert('The Email is  not valid !');window.location.href = window.location.href;</script>")
 
 
 
