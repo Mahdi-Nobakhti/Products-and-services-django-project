@@ -287,12 +287,72 @@ h6 {
   color: #fff;
 }
 
+@media (max-width: 1398px) {
+  .navbar ul {
+    margin-left: -200px !important;
+  }
+}
+@media (max-width: 1192px) {
+  .navbar ul {
+    margin-left: -300px !important;
+  }
+}
 @media (max-width: 991px) {
   .mobile-nav-toggle {
     display: block;
-    margin-left: -455px;
+    margin-left: -135px;
   }
-
+  .navbar-mobile ul {
+    left: 318px !important;
+  }
+  .navbar ul {
+    display: none;
+  }
+}
+@media (max-width: 764px) {
+  .mobile-nav-toggle {
+    display: block;
+    margin-left: -235px;
+  }
+  .navbar-mobile ul {
+    left: 318px !important;
+  }
+  .navbar ul {
+    display: none;
+  }
+}
+@media (max-width: 674px) {
+  .mobile-nav-toggle {
+    display: block;
+    margin-left: -335px;
+  }
+  .navbar-mobile ul {
+    left: 318px !important;
+  }
+  .navbar ul {
+    display: none;
+  }
+}
+@media (max-width: 498px) {
+  .mobile-nav-toggle {
+    display: block;
+    margin-left: -385px;
+  }
+  .navbar-mobile ul {
+    left: 318px !important;
+  }
+  .navbar ul {
+    display: none;
+  }
+}
+@media (max-width: 432px) {
+  .mobile-nav-toggle {
+    display: block;
+    margin-left: -465px;
+  }
+  .navbar-mobile ul {
+    left: 318px !important;
+  }
   .navbar ul {
     display: none;
   }
