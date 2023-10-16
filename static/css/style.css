@@ -291,6 +291,9 @@ h6 {
   .navbar ul {
     margin-left: -200px !important;
   }
+  .navbar-mobile .dropdown > .dropdown-active {
+    margin-left: 0px !important;
+  }
 }
 @media (max-width: 1192px) {
   .navbar ul {
